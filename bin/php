@@ -1,0 +1,2 @@
+command="docker exec supreme-potato-php "$@""
+$command
