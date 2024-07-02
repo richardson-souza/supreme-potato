@@ -73,7 +73,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "AppTest\\": "test/AppTest/"
+            "AppUnitTest\\": "test/unit"
         }
     },
     "scripts": {
@@ -100,7 +100,7 @@
         ],
         "static-analysis": "psalm --stats",
         "static-analysis-update-baseline": "psalm --stats --update-baseline",
-        "test": "phpunit --colors=always",
+        "test": "phpunit --colors=always test/unit",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
     "scripts-descriptions": {
