@@ -1,0 +1,49 @@
+name: supreme-potato
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./environment/nginx/Dockerfile
+    container_name: supreme-potato-nginx
+    ports:
+      - "8106:80"
+      - "8206:443"
+      - "8305:9001"
+    privileged: true
+    volumes:
+      - ./environment/nginx/log:/var/log/nginx
+    command: [nginx-debug, '-g', 'daemon off;']
+  php:
+    build:
+      context: .
+      dockerfile: ./environment/php/Dockerfile
+      target: final
+    container_name: supreme-potato-php
+    privileged: true
+    volumes:
+      - ./:/var/www
+      - ./environment/php/log:/var/log
+    networks:
+      - default
+      - supreme-potato-networks
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  db:
+    image: mysql/mysql-server:5.6
+    container_name: supreme-potato-db
+    environment:
+     - MYSQL_DATABASE=root
+     - MYSQL_USER=root
+     - MYSQL_PASSWORD=1234%root%
+     - MYSQL_ROOT_PASSWORD=1234%root%
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - default
+      - supreme-potato-networks
+
+volumes:
+  db:
+
+networks:
+  supreme-potato-networks:
+    external: true
