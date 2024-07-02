@@ -16,3 +16,6 @@ composer.lock
 .env
 supervisord.pid
 .vscode/launch.json
+environment/nginx/log/*
+environment/php/log/*
+
