@@ -19,3 +19,6 @@ supervisord.pid
 environment/nginx/log/*
 environment/php/log/*
 
+.phpunit.cache
+.phpunit.cache/test-results
+target/unit/report.xml
