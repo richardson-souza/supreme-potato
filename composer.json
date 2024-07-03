@@ -73,7 +73,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "AppUnitTest\\": "test/unit"
+            "AppTest\\": [
+                "tests/unit/",
+                "tests/integration/"
+              ]
         }
     },
     "scripts": {
@@ -100,8 +103,11 @@
         ],
         "static-analysis": "psalm --stats",
         "static-analysis-update-baseline": "psalm --stats --update-baseline",
-        "test": "phpunit --colors=always test/unit",
-        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+        "test": "./vendor/bin/phpunit --configuration phpunit.xml --testsuite all-tests",
+        "test-integration": "./vendor/bin/phpunit --configuration phpunit.xml --testsuite integration-tests",
+        "test-integration-coverage": "php -n -dzend_extension=xdebug -dxdebug.mode=coverage ./vendor/bin/phpunit --configuration phpunit.xml --testsuite integration-tests --coverage-html public/coverage/integration --coverage-clover target/integration/coverage.xml --coverage-text='target/integration/coverage.txt' --log-junit target/integration/report.xml",
+        "test-unit": "./vendor/bin/phpunit --configuration phpunit.xml --testsuite unit-tests",
+        "test-unit-coverage": "php -n -dzend_extension=xdebug -dxdebug.mode=coverage ./vendor/bin/phpunit --configuration phpunit.xml --testsuite unit-tests --coverage-html public/coverage/unit --coverage-clover target/unit/coverage.xml --coverage-text='target/unit/coverage.txt' --log-junit target/unit/report.xml"
     },
     "scripts-descriptions": {
         "clear-config-cache": "Clears merged config cache. Required for config changes to be applied.",

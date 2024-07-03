@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" bootstrap="test/Bootstrap.php" colors="true" executionOrder="depends,defects" beStrictAboutOutputDuringTests="false" failOnRisky="false" failOnWarning="false" cacheDirectory=".phpunit.cache" requireCoverageMetadata="false" beStrictAboutCoverageMetadata="false">
+  <testsuites>
+    <testsuite name="all-tests">
+      <directory>test</directory>
+    </testsuite>
+    <testsuite name="unit-tests">
+      <directory>test/unit</directory>
+    </testsuite>
+    <testsuite name="integration-tests">
+      <directory>test/integration</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <const name="APPLICATION_ENV" value="testing"/>
+    <const name="XDEBUG_MODE" value="coverage"/>
+  </php>
+  <source>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+  </source>
+</phpunit>
